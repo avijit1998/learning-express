@@ -7,7 +7,29 @@ console.log(path.join(__dirname, "../public"));
 
 const app = express();
 
+app.set("view engine", "hbs");
 app.use(express.static(path.join(__dirname, "../public")));
+
+app.get("/", (req, res) => {
+  res.render("index", {
+    title: "Weather",
+    name: "Avijit",
+  });
+});
+
+app.get("/about", (req, res) => {
+  res.render("about", {
+    title: "About Me",
+    name: "Avijit",
+  });
+});
+
+app.get("/help", (req, res) => {
+  res.render("help", {
+    message:
+      "This is a test message written by the creator. A ring to rule them all.",
+  });
+});
 
 app.get("/weather", (req, res) => {
   res.send({
