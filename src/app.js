@@ -1,21 +1,13 @@
+const path = require("path");
 const express = require("express");
+
+console.log(__dirname);
+console.log(path.join(__dirname, "../public"));
+// console.log(__filename);
 
 const app = express();
 
-app.get("", (req, res) => {
-  res.send("<h1>Weather App</h1>");
-});
-
-app.get("/help", (req, res) => {
-  res.send([
-    { name: "Avijit", age: 22 },
-    { name: "Andrew", age: 27 },
-  ]);
-});
-
-app.get("/about", (req, res) => {
-  res.send("<h1>About Page!</h1>");
-});
+app.use(express.static(path.join(__dirname, "../public")));
 
 app.get("/weather", (req, res) => {
   res.send({
