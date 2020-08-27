@@ -42,9 +42,14 @@ app.get("/help", (req, res) => {
 });
 
 app.get("/weather", (req, res) => {
+  if (!req.query.address) {
+    return res.send("You must enter address");
+  }
+
   res.send({
     forecast: "Cloudy with chances of rain",
     location: "Bhubaneswar",
+    address: req.query.address,
   });
 });
 
